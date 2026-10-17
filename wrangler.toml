@@ -1,0 +1,119 @@
+# Public template. Replace every <PLACEHOLDER> with your own Cloudflare resource IDs
+# (wrangler kv namespace create / wrangler d1 create). Rate-limit namespace IDs must be
+# unique integers within your account. Secrets go in `wrangler secret put`, never here.
+
+account_id = "<CLOUDFLARE_ACCOUNT_ID>"
+name = "jsonmend-staging"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+preview_urls = false
+
+[limits]
+cpu_ms = 500
+
+[vars]
+ENVIRONMENT = "staging"
+PUBLIC_LAUNCH = "false"
+ANON_PER_MIN = "10"
+ANON_DAILY_PER_IP = "30"
+ANON_DAILY_PER_IP48 = "90"
+KEY_PER_MIN = "30"
+KEY_MONTHLY_QUOTA = "1000"
+KEY_ISSUER_MONTHLY_QUOTA = "3000"
+KEY_ISSUE_PER_IP_PER_DAY = "3"
+KEY_ISSUE_GLOBAL_PER_DAY = "50"
+GLOBAL_DAILY_REQUEST_CAP = "3000"
+MCP_REGISTRY_AUTH = ""
+
+[[kv_namespaces]]
+binding = "JSONMEND_KV"
+id = "<KV_NAMESPACE_ID>"
+
+[[unsafe.bindings]]
+name = "IP_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_1>"
+simple = { limit = 10, period = 60 }
+
+[[unsafe.bindings]]
+name = "KEY_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_2>"
+simple = { limit = 30, period = 60 }
+
+[env.staging]
+name = "jsonmend-staging"
+workers_dev = true
+preview_urls = false
+
+[env.staging.limits]
+cpu_ms = 500
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+PUBLIC_LAUNCH = "false"
+ANON_PER_MIN = "10"
+ANON_DAILY_PER_IP = "30"
+ANON_DAILY_PER_IP48 = "90"
+KEY_PER_MIN = "30"
+KEY_MONTHLY_QUOTA = "1000"
+KEY_ISSUER_MONTHLY_QUOTA = "3000"
+KEY_ISSUE_PER_IP_PER_DAY = "3"
+KEY_ISSUE_GLOBAL_PER_DAY = "50"
+GLOBAL_DAILY_REQUEST_CAP = "3000"
+MCP_REGISTRY_AUTH = ""
+
+[[env.staging.kv_namespaces]]
+binding = "JSONMEND_KV"
+id = "<STAGING_KV_NAMESPACE_ID>"
+
+[[env.staging.unsafe.bindings]]
+name = "IP_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_1>"
+simple = { limit = 10, period = 60 }
+
+[[env.staging.unsafe.bindings]]
+name = "KEY_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_2>"
+simple = { limit = 30, period = 60 }
+
+[env.production]
+name = "jsonmend"
+workers_dev = true
+preview_urls = false
+
+[env.production.limits]
+cpu_ms = 500
+
+[env.production.vars]
+ENVIRONMENT = "production"
+PUBLIC_LAUNCH = "true"
+ANON_PER_MIN = "10"
+ANON_DAILY_PER_IP = "30"
+ANON_DAILY_PER_IP48 = "90"
+KEY_PER_MIN = "30"
+KEY_MONTHLY_QUOTA = "1000"
+KEY_ISSUER_MONTHLY_QUOTA = "3000"
+KEY_ISSUE_PER_IP_PER_DAY = "3"
+KEY_ISSUE_GLOBAL_PER_DAY = "200"
+GLOBAL_DAILY_REQUEST_CAP = "20000"
+MCP_REGISTRY_AUTH = ""
+
+[[env.production.kv_namespaces]]
+binding = "JSONMEND_KV"
+id = "<PRODUCTION_KV_NAMESPACE_ID>"
+
+[[env.production.unsafe.bindings]]
+name = "IP_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_3>"
+simple = { limit = 10, period = 60 }
+
+[[env.production.unsafe.bindings]]
+name = "KEY_LIMITER"
+type = "ratelimit"
+namespace_id = "<RATE_LIMIT_NAMESPACE_ID_4>"
+simple = { limit = 30, period = 60 }

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "dev.workers.mike-tusa.jsonmend/jsonmend",
+  "title": "JsonMend",
+  "description": "Repair broken JSON from LLM output and validate it against a JSON Schema.",
+  "version": "0.1.4",
+  "websiteUrl": "https://jsonmend.mike-tusa.workers.dev/",
+  "icons": [{ "src": "https://jsonmend.mike-tusa.workers.dev/favicon.svg", "mimeType": "image/svg+xml", "sizes": ["any"] }],
+  "remotes": [{
+    "type": "streamable-http",
+    "url": "https://jsonmend.mike-tusa.workers.dev/mcp",
+    "headers": [{ "name": "Authorization", "description": "Optional. 'Bearer <key>' (free jm_ key) for higher limits. Works without a key.", "isRequired": false, "isSecret": true }]
+  }]
+}
