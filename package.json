@@ -5,11 +5,11 @@
   "description": "Repair broken JSON from LLM output (web paste box + JSON API + remote MCP server) on Cloudflare Workers",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "dev": "npx wrangler@4 dev",
+    "deploy": "npx wrangler@4 deploy"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "dependencies": {
     "@cfworker/json-schema": "4.1.1",
