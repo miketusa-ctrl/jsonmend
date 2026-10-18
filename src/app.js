@@ -1,5 +1,5 @@
 // JsonMend HTTP router, key gate, limits and the shared tool runner (REST + MCP). Pure compute: no outbound fetches.
-// Structure follows CertGuard v0.2.0 / DnsGuard v0.7.2 (shared agent-ready recipe r2).
+// Structure follows CertGuard v0.2.0 / DnsGuard v0.7.2.
 import { VERSION } from './lib/version.js';
 import { ipBucket, ipBucket48 } from './lib/ip.js';
 import { countVisitor } from './lib/visitors.js';
