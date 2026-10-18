@@ -1,5 +1,4 @@
-// Client-IP bucketing for anonymous limits (shared agent-ready recipe §1; same output as workdayapi's
-// ipBucket).
+// Client-IP bucketing for anonymous limits.
 
 /** IPv4 as is; IPv6 → its /64 (one subscriber controls a whole /64); IPv4-mapped IPv6 → the IPv4. */
 export function ipBucket(ip) {
