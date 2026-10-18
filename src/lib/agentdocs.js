@@ -1,7 +1,7 @@
 /**
  * Agent-discovery documents: /llms.txt (llmstxt.org format), /openapi.json (OpenAPI 3.1) and the MCP server card
  * (/.well-known/mcp/server-card.json). Generated from code constants and config(env) so limits / versions / URLs
- * can't drift from what the Worker enforces. test/agent.test.js checks them against the real router.
+ * can't drift from what the Worker enforces.
  */
 import { VERSION } from './version.js';
 import { FIX_CODES, FORMATS, MAX_INPUT_BYTES, MAX_DEPTH } from './repair.js';
@@ -21,7 +21,7 @@ export function registryAuthProof(env) {
   return /^v=MCPv1; k=(ed25519|ecdsap384); p=[A-Za-z0-9+/=]{20,120}$/.test(proof) ? proof : null;
 }
 
-// Glama connector ownership claim, served at /.well-known/glama.json. Replace the placeholder with your own claim token from glama.ai.
+// Glama connector ownership claim, served at /.well-known/glama.json. Set your own glama.ai claim token as the GLAMA_CLAIM Worker secret (or replace the placeholder, if present).
 export const GLAMA_CLAIM = '<GLAMA_CLAIM_TOKEN>';
 export const GLAMA_JSON = JSON.stringify({ $schema: 'https://glama.ai/mcp/schemas/connector.json', claim: GLAMA_CLAIM });
 
