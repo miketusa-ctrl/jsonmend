@@ -1,7 +1,7 @@
 /**
  * JsonMend remote MCP server. Hand-rolled JSON-RPC 2.0 over Streamable HTTP; no SDK, no dependencies. Adapted from
  * CertGuard src/mcp.js (v0.2.0, incl. fix c2606ed: modern results keep _meta["<worker>/error"]), itself adapted from
- * DnsGuard src/lib/mcp.js (shared agent-ready recipe r2).
+ * DnsGuard src/lib/mcp.js.
  *
  * Dual-era and stateless:
  *  - Modern (MCP 2026-07-28): every request carries params._meta["io.modelcontextprotocol/protocolVersion"] plus the
@@ -24,8 +24,7 @@ import { DRAFTS } from './schema.js';
 export const MODERN_VERSIONS = ['2026-07-28'];
 export const LEGACY_VERSIONS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 export const SUPPORTED_VERSIONS = [...MODERN_VERSIONS, ...LEGACY_VERSIONS];
-// JsonMend deviation from the recipe's 64 KB: inputs may be up to 100 KB, and JSON-escaping inside a JSON-RPC
-// string can roughly double that, plus a schema (≤ 32 KB). Same cap as the REST body (app.js MAX_BODY).
+// Same cap as the REST body (app.js MAX_BODY).
 export const MAX_BODY_BYTES = 256 * 1024;
 export const MAX_BATCH = 10;
 export const MAX_CHECKS_PER_REQUEST = 1; // bounds CPU per invocation and keeps 1 HTTP request ≈ 1 counted request
